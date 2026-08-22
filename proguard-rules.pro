@@ -18,7 +18,6 @@
     private void readObjectNoData();
 }
 
--keep class org.mozilla.geckoview.** { *; }
 
 -assumenosideeffects class android.util.Log {
     public static *** d(...);

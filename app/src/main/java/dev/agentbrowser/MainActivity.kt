@@ -12,13 +12,13 @@ import androidx.navigation.compose.rememberNavController
 import dev.agentbrowser.presentation.navigation.NavGraph
 import dev.agentbrowser.presentation.viewmodel.BrowserViewModel
 import dev.agentbrowser.presentation.viewmodel.TabsViewModel
-import dev.agentbrowser.platform.GeckoEngine
+import dev.agentbrowser.platform.WebViewEngine
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val application = application as BrowserApplication
-        val engine = GeckoEngine(this)
+        val engine = WebViewEngine(this)
         val browserViewModel = BrowserViewModel(application.browserRepository, application.tabManager)
         val tabsViewModel = TabsViewModel(application.tabManager, application.historyRepository)
 

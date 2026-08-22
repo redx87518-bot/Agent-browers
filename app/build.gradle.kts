@@ -66,7 +66,7 @@ dependencies {
     val materialVersion = "1.11.0"
     val navigationVersion = "2.7.5"
     val coilVersion = "2.5.0"
-    val geckoVersion = "125.0.20240425211020"
+    val webkitVersion = "1.9.0"
 
     implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
@@ -78,7 +78,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:$navigationVersion")
     implementation("com.google.android.material:material:$materialVersion")
     implementation("androidx.compose.material3:material3:$material3Version")
-    implementation("org.mozilla.geckoview:geckoview-omni:$geckoVersion")
+    implementation("androidx.webkit:webkit:$webkitVersion")
     implementation("io.coil-kt:coil-compose:$coilVersion")
 
     testImplementation("junit:junit:4.13.2")

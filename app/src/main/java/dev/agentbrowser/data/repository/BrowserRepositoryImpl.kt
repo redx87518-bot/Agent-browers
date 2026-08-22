@@ -8,7 +8,7 @@ import dev.agentbrowser.domain.model.GoogleSearchProvider
 import dev.agentbrowser.domain.repository.BrowserRepository
 import dev.agentbrowser.domain.repository.HistoryRepository
 import dev.agentbrowser.domain.repository.TabManager
-import dev.agentbrowser.platform.GeckoEngine
+import dev.agentbrowser.platform.WebViewEngine
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.launch
 
 class BrowserRepositoryImpl(
-    private val engine: GeckoEngine,
+    private val engine: WebViewEngine,
     private val tabManager: TabManager,
     private val historyRepository: HistoryRepository,
     private val searchProvider: SearchProvider = GoogleSearchProvider

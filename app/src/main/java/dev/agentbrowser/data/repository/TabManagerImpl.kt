@@ -1,7 +1,7 @@
 package dev.agentbrowser.data.repository
 
 import dev.agentbrowser.domain.model.Tab
-import dev.agentbrowser.platform.GeckoEngine
+import dev.agentbrowser.platform.WebViewEngine
 import dev.agentbrowser.domain.repository.TabManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class TabManagerImpl(
-    private val engine: GeckoEngine
+    private val engine: WebViewEngine
 ) : TabManager {
 
     private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
@@ -26,7 +26,7 @@ class TabManagerImpl(
     override suspend fun createTab(url: String): Tab {
         val tab = Tab(url = url)
         _tabs.update { it + tab }
-        engine.createSession(tab.id)
+        engine.createWebView(tab.id)
         if (_activeTabId.value == null) {
             _activeTabId.value = tab.id
         }
@@ -35,19 +35,19 @@ class TabManagerImpl(
 
     override suspend fun closeTab(tabId: String) {
         val tab = _tabs.value.find { it.id == tabId } ?: return
-        engine.closeSession(tabId)
+        engine.closeWebView(tabId)
         _tabs.update { it.filter { t -> t.id != tabId } }
         if (_activeTabId.value == tabId) {
             _activeTabId.value = _tabs.value.firstOrNull()?.id
             if (_activeTabId.value != null) {
-                engine.setActiveSession(_activeTabId.value)
+                engine.setActiveWebView(_activeTabId.value)
             }
         }
     }
 
     override suspend fun switchTab(tabId: String) {
         val tab = _tabs.value.find { it.id == tabId } ?: return
-        engine.setActiveSession(tabId)
+        engine.setActiveWebView(tabId)
         _activeTabId.value = tabId
         _tabs.update { list ->
             list.map { if (it.id == tabId) it.copy(lastActiveAt = System.currentTimeMillis()) else it }
@@ -55,7 +55,7 @@ class TabManagerImpl(
     }
 
     override suspend fun closeAllTabs() {
-        _tabs.value.forEach { engine.closeSession(it.id) }
+        _tabs.value.forEach { engine.closeWebView(it.id) }
         _tabs.value = emptyList()
         _activeTabId.value = null
     }

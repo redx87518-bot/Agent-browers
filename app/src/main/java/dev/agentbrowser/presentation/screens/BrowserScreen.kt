@@ -18,16 +18,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.agentbrowser.presentation.viewmodel.BrowserViewModel
 import dev.agentbrowser.presentation.components.AddressBar
-import dev.agentbrowser.platform.GeckoEngine
+import dev.agentbrowser.platform.WebViewEngine
 
 @Composable
 fun BrowserScreen(
     viewModel: BrowserViewModel,
-    engine: GeckoEngine,
+    engine: WebViewEngine,
     onNavigateToTabs: () -> Unit
 ) {
     val state by viewModel.browserState.collectAsState()
     val tabs by viewModel.tabs.collectAsState()
+    val activeWebView = engine.getActiveWebView()
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -61,9 +62,9 @@ fun BrowserScreen(
                 )
             }
 
-            engine.getGeckoView().let { geckoView ->
+            if (activeWebView != null) {
                 androidx.compose.ui.viewinterop.AndroidView(
-                    factory = { geckoView },
+                    factory = { activeWebView },
                     modifier = Modifier.fillMaxSize()
                 )
             }

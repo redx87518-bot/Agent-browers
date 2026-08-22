@@ -10,14 +10,14 @@ import dev.agentbrowser.presentation.screens.PlaceholderScreen
 import dev.agentbrowser.presentation.screens.TabsScreen
 import dev.agentbrowser.presentation.viewmodel.BrowserViewModel
 import dev.agentbrowser.presentation.viewmodel.TabsViewModel
-import dev.agentbrowser.platform.GeckoEngine
+import dev.agentbrowser.platform.WebViewEngine
 
 @Composable
 fun NavGraph(
     navController: NavHostController,
     browserViewModel: BrowserViewModel,
     tabsViewModel: TabsViewModel,
-    engine: GeckoEngine
+    engine: WebViewEngine
 ) {
     NavHost(navController = navController, startDestination = "browser") {
         composable("browser") {

@@ -11,7 +11,7 @@ import dev.agentbrowser.domain.repository.HistoryRepository
 import dev.agentbrowser.domain.repository.TabManager
 import dev.agentbrowser.platform.AndroidDownloadHandler
 import dev.agentbrowser.platform.DownloadHandler
-import dev.agentbrowser.platform.GeckoEngine
+import dev.agentbrowser.platform.WebViewEngine
 import dev.agentbrowser.platform.PermissionHelper
 
 class BrowserApplication : Application() {
@@ -30,7 +30,7 @@ class BrowserApplication : Application() {
         super.onCreate()
         permissionHelper = PermissionHelper(this)
         val downloadHandler = AndroidDownloadHandler(this)
-        val engine = GeckoEngine(this)
+        val engine = WebViewEngine(this)
         historyRepository = HistoryRepositoryImpl()
         tabManager = TabManagerImpl(engine)
         downloadRepository = DownloadRepositoryImpl(downloadHandler)
