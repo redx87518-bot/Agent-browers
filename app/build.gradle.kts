@@ -68,6 +68,7 @@ dependencies {
     val roomVersion = "2.6.1"
     val webkitVersion = "1.9.0"
     val coilVersion = "2.5.0"
+    val geckoVersion = "125.0.20240425211020"
 
     implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
@@ -80,7 +81,7 @@ dependencies {
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
-    implementation("androidx.webkit:webkit:$webkitVersion")
+    implementation("org.mozilla.geckoview:geckoview-omni:$geckoVersion")
     implementation("io.coil-kt:coil-compose:$coilVersion")
 
     testImplementation("junit:junit:4.13.2")

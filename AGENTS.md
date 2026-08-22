@@ -12,3 +12,4 @@
 8. **Secure by default.** Do not log secrets, expose APIs, or introduce security vulnerabilities.
 9. **Test on device when possible.** Verify UI behavior on a real device or emulator.
 10. **Keep it minimal.** Avoid unnecessary abstractions, frameworks, or dependencies.
+11. **Use GeckoView, do not build a browser engine from scratch.** Mozilla GeckoView is the browser engine. Our app provides the product experience, UI, tab system, and future AI integration layer around it.
