@@ -18,7 +18,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val application = application as BrowserApplication
-        val engine = WebViewEngine(this)
         val browserViewModel = BrowserViewModel(application.browserRepository, application.tabManager)
         val tabsViewModel = TabsViewModel(application.tabManager, application.historyRepository)
 
@@ -30,7 +29,7 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         browserViewModel = browserViewModel,
                         tabsViewModel = tabsViewModel,
-                        engine = engine
+                        engine = application.webViewEngine
                     )
                 }
             }

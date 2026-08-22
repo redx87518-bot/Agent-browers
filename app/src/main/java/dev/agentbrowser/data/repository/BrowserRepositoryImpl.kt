@@ -16,10 +16,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.launch
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 class BrowserRepositoryImpl(
     private val engine: WebViewEngine,
@@ -64,11 +63,15 @@ class BrowserRepositoryImpl(
     }
 
     override suspend fun loadUrl(url: String, tabId: String?) {
+        val trimmed = url.trim()
+        if (trimmed.isEmpty()) return
+
         val targetTabId = tabId ?: tabManager.activeTabId.value ?: run {
             val newTab = tabManager.createTab()
             newTab.id
         }
-        val resolvedUrl = resolveUrl(url)
+
+        val resolvedUrl = resolveUrl(trimmed)
         engine.loadUrl(resolvedUrl, targetTabId)
         if (tabId == null) {
             tabManager.switchTab(targetTabId)
@@ -113,14 +116,17 @@ class BrowserRepositoryImpl(
     override fun getActiveTab(): StateFlow<Tab?> {
         return tabManager.activeTabId.map { id ->
             id?.let { tabManager.getTab(it) }
-        }.stateIn(scope, kotlinx.coroutines.flow.SharingStarted.WhileSubscribed(5000), null)
+        }.stateIn(scope, SharingStarted.WhileSubscribed(5000), null)
     }
 
     private fun resolveUrl(input: String): String {
         return when {
             input.startsWith("http://") || input.startsWith("https://") -> input
             input.contains(".") && !input.contains(" ") -> "https://$input"
-            else -> searchProvider.buildSearchUrl(input)
+            else -> {
+                val encoded = URLEncoder.encode(input, StandardCharsets.UTF_8.name())
+                searchProvider.buildSearchUrl(encoded)
+            }
         }
     }
 }

@@ -24,6 +24,12 @@ class BrowserViewModel(
                 updateActiveTab()
             }
         }
+        viewModelScope.launch {
+            if (tabManager.tabs.value.isEmpty() && tabManager.activeTabId.value == null) {
+                val tab = tabManager.createTab()
+                tabManager.switchTab(tab.id)
+            }
+        }
     }
 
     private fun updateActiveTab() {

@@ -50,6 +50,7 @@ class WebViewEngine(private val context: Context) {
 
         webView.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: android.graphics.Bitmap?) {
+                _error.value = null
                 _isLoading.value = true
                 _loadingProgress.value = 0
                 _currentUrl.value = url ?: ""

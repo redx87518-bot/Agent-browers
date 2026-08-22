@@ -13,6 +13,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -29,6 +32,7 @@ fun BrowserScreen(
     val state by viewModel.browserState.collectAsState()
     val tabs by viewModel.tabs.collectAsState()
     val activeWebView = engine.getActiveWebView()
+    var urlInput by remember { mutableStateOf(state.currentUrl) }
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -39,9 +43,13 @@ fun BrowserScreen(
             verticalArrangement = Arrangement.Top
         ) {
             AddressBar(
-                url = state.currentUrl,
-                onUrlChange = { viewModel.loadUrl(it) },
-                onTabClick = { onNavigateToTabs() },
+                url = urlInput,
+                onUrlChange = { urlInput = it },
+                onUrlSubmit = {
+                    urlInput = it
+                    viewModel.loadUrl(it)
+                },
+                onTabClick = onNavigateToTabs,
                 tabCount = tabs.size
             )
 

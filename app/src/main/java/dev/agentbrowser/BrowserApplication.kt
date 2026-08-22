@@ -25,15 +25,17 @@ class BrowserApplication : Application() {
         private set
     lateinit var permissionHelper: PermissionHelper
         private set
+    lateinit var webViewEngine: WebViewEngine
+        private set
 
     override fun onCreate() {
         super.onCreate()
         permissionHelper = PermissionHelper(this)
         val downloadHandler = AndroidDownloadHandler(this)
-        val engine = WebViewEngine(this)
+        webViewEngine = WebViewEngine(this)
         historyRepository = HistoryRepositoryImpl()
-        tabManager = TabManagerImpl(engine)
+        tabManager = TabManagerImpl(webViewEngine)
         downloadRepository = DownloadRepositoryImpl(downloadHandler)
-        browserRepository = BrowserRepositoryImpl(engine, tabManager, historyRepository)
+        browserRepository = BrowserRepositoryImpl(webViewEngine, tabManager, historyRepository)
     }
 }
