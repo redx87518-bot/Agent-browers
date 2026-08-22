@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
 }
 
 android {
@@ -65,8 +64,6 @@ dependencies {
     val composeVersion = "1.5.4"
     val material3Version = "1.1.2"
     val navigationVersion = "2.7.5"
-    val roomVersion = "2.6.1"
-    val webkitVersion = "1.9.0"
     val coilVersion = "2.5.0"
     val geckoVersion = "125.0.20240425211020"
 
@@ -78,9 +75,6 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
     implementation("androidx.compose.material3:material3:$material3Version")
     implementation("androidx.navigation:navigation-compose:$navigationVersion")
-    implementation("androidx.room:room-runtime:$roomVersion")
-    implementation("androidx.room:room-ktx:$roomVersion")
-    ksp("androidx.room:room-compiler:$roomVersion")
     implementation("org.mozilla.geckoview:geckoview-omni:$geckoVersion")
     implementation("io.coil-kt:coil-compose:$coilVersion")
 

@@ -1,16 +1,13 @@
 # Add project specific ProGuard rules here.
 -keepattributes *Annotation*
--keepclassmembers class * {
-    @androidx.room.* <methods>;
-}
 
 -dontwarn androidx.**
 -dontwarn okhttp3.**
 -dontwarn okio.**
 -dontwarn javax.annotation.**
 
--keep class dev.agentbrowser.data.database.** { *; }
--keep class dev.agentbrowser.data.model.** { *; }
+-keep class dev.agentbrowser.data.repository.** { *; }
+-keep class dev.agentbrowser.platform.** { *; }
 
 -keepclassmembers class * implements java.io.Serializable {
     static final long serialVersionUID;
@@ -20,6 +17,8 @@
     java.lang.Object writeReplace();
     private void readObjectNoData();
 }
+
+-keep class org.mozilla.geckoview.** { *; }
 
 -assumenosideeffects class android.util.Log {
     public static *** d(...);
