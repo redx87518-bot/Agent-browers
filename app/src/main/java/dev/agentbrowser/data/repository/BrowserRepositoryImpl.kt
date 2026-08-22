@@ -107,7 +107,7 @@ class BrowserRepositoryImpl(
         _browserState.update { it.copy(error = null) }
     }
 
-    override fun getActiveTab(): StateFlow<dev.agentbrowser.domain.model.Tab?> {
+    override fun getActiveTab(): StateFlow<Tab?> {
         return tabManager.activeTabId.map { id ->
             id?.let { tabManager.getTab(it) }
         }.stateIn(scope, kotlinx.coroutines.flow.SharingStarted.WhileSubscribed(5000), null)
