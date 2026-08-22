@@ -10,6 +10,7 @@ interface TabManager {
     suspend fun closeTab(tabId: String)
     suspend fun switchTab(tabId: String)
     suspend fun closeAllTabs()
+    suspend fun updateTab(tabId: String, transform: (Tab) -> Tab)
     fun getTab(tabId: String): Tab?
     fun getActiveTab(): Tab?
 }
