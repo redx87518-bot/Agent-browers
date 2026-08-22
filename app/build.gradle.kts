@@ -66,7 +66,6 @@ dependencies {
     val material3Version = "1.1.2"
     val navigationVersion = "2.7.5"
     val roomVersion = "2.6.1"
-    val webkitVersion = "1.9.0"
     val coilVersion = "2.5.0"
     val geckoVersion = "125.0.20240425211020"
 

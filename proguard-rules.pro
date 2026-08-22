@@ -9,8 +9,8 @@
 -dontwarn okio.**
 -dontwarn javax.annotation.**
 
--keep class dev.agentbrowser.data.database.** { *; }
--keep class dev.agentbrowser.data.model.** { *; }
+-keep class dev.agentbrowser.data.local.** { *; }
+-keep class dev.agentbrowser.data.repository.** { *; }
 
 -keepclassmembers class * implements java.io.Serializable {
     static final long serialVersionUID;
@@ -20,6 +20,8 @@
     java.lang.Object writeReplace();
     private void readObjectNoData();
 }
+
+-keep class org.mozilla.geckoview.** { *; }
 
 -assumenosideeffects class android.util.Log {
     public static *** d(...);
