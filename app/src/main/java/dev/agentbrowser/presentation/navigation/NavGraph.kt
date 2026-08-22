@@ -5,9 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import dev.agentbrowser.presentation.screens.BrowserScreen
-import dev.agentbrowser.presentation.screens.NewTabPage
 import dev.agentbrowser.presentation.screens.PlaceholderScreen
-import dev.agentbrowser.presentation.screens.TabsScreen
 import dev.agentbrowser.presentation.viewmodel.BrowserViewModel
 import dev.agentbrowser.presentation.viewmodel.TabsViewModel
 import dev.agentbrowser.platform.WebViewEngine
@@ -23,21 +21,8 @@ fun NavGraph(
         composable("browser") {
             BrowserScreen(
                 viewModel = browserViewModel,
-                engine = engine,
-                onNavigateToTabs = { navController.navigate("tabs") }
+                engine = engine
             )
-        }
-        composable("tabs") {
-            TabsScreen(
-                viewModel = tabsViewModel,
-                onNavigateBack = { navController.popBackStack() }
-            )
-        }
-        composable("newtab") {
-            NewTabPage { url ->
-                browserViewModel.loadUrl(url)
-                navController.navigate("browser")
-            }
         }
         composable("menu") {
             PlaceholderScreen(

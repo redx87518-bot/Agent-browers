@@ -1,10 +1,7 @@
 package dev.agentbrowser.presentation.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.LinearProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
@@ -17,8 +14,7 @@ import dev.agentbrowser.platform.WebViewEngine
 @Composable
 fun BrowserScreen(
     viewModel: BrowserViewModel,
-    engine: WebViewEngine,
-    onNavigateToTabs: () -> Unit
+    engine: WebViewEngine
 ) {
     val state by viewModel.browserState.collectAsState()
     val activeWebView = engine.getActiveWebView()
@@ -52,12 +48,5 @@ fun BrowserScreen(
             bridge = shellBridge,
             modifier = Modifier.fillMaxSize()
         )
-
-        if (state.isLoading) {
-            LinearProgressIndicator(
-                progress = state.loadingProgress / 100f,
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
     }
 }

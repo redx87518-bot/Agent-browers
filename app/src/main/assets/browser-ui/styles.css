@@ -1,6 +1,7 @@
 :root {
     --bg-primary: #ffffff;
     --bg-surface: #ffffff;
+    --bg-elevated: #ffffff;
     --text-primary: #0f172a;
     --text-secondary: #475569;
     --text-tertiary: #94a3b8;
@@ -61,12 +62,10 @@ html, body {
     display: flex;
 }
 
-/* Make interactive elements work */
 button, input, .quick-btn, .tab-card, .recent-item, .dock-btn, .tabs-btn, .clear-btn, .new-tab-btn, .retry-btn {
     pointer-events: auto;
 }
 
-/* Browser Screen */
 #browser-screen {
     z-index: 1;
 }
@@ -183,12 +182,6 @@ button, input, .quick-btn, .tab-card, .recent-item, .dock-btn, .tabs-btn, .clear
     background: transparent;
 }
 
-#main-webview {
-    width: 100%;
-    height: 100%;
-}
-
-/* New Tab Screen */
 #newtab-screen {
     background: linear-gradient(135deg, var(--bg-primary) 0%, #f1f5f9 100%);
     pointer-events: auto;
@@ -388,7 +381,6 @@ button, input, .quick-btn, .tab-card, .recent-item, .dock-btn, .tabs-btn, .clear
     white-space: nowrap;
 }
 
-/* Tab Switcher Screen */
 #tabs-screen {
     background: var(--bg-primary);
     z-index: 20;
@@ -522,7 +514,6 @@ button, input, .quick-btn, .tab-card, .recent-item, .dock-btn, .tabs-btn, .clear
     color: var(--error-color);
 }
 
-/* Error Screen */
 #error-screen {
     background: linear-gradient(135deg, var(--bg-primary) 0%, #fef2f2 100%);
     align-items: center;
@@ -584,7 +575,6 @@ button, input, .quick-btn, .tab-card, .recent-item, .dock-btn, .tabs-btn, .clear
     transform: translateY(0);
 }
 
-/* Bottom Dock */
 .bottom-dock {
     position: fixed;
     bottom: 16px;
@@ -640,7 +630,6 @@ button, input, .quick-btn, .tab-card, .recent-item, .dock-btn, .tabs-btn, .clear
     margin: 0 4px;
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -658,7 +647,6 @@ button, input, .quick-btn, .tab-card, .recent-item, .dock-btn, .tabs-btn, .clear
     background: var(--text-tertiary);
 }
 
-/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -668,7 +656,6 @@ button, input, .quick-btn, .tab-card, .recent-item, .dock-btn, .tabs-btn, .clear
     animation: fadeIn 0.2s ease;
 }
 
-/* Mobile adjustments */
 @media (max-width: 380px) {
     .quick-buttons {
         grid-template-columns: repeat(2, 1fr);

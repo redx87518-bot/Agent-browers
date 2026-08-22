@@ -15,6 +15,18 @@ class BrowserUI {
         this.setupWebView();
         this.bindEvents();
         this.showScreen('newtab');
+        this.pollForBridge();
+    }
+
+    pollForBridge() {
+        const check = () => {
+            if (window.BrowserBridge) {
+                this.bridge = window.BrowserBridge;
+            } else {
+                setTimeout(check, 50);
+            }
+        };
+        check();
     }
 
     setupWebView() {
@@ -55,7 +67,6 @@ class BrowserUI {
     }
 
     bindEvents() {
-        // URL input
         const urlInput = document.getElementById('url-input');
         if (urlInput) {
             urlInput.addEventListener('keypress', (e) => {
@@ -65,7 +76,6 @@ class BrowserUI {
             });
         }
 
-        // Clear button
         const clearBtn = document.getElementById('clear-btn');
         if (clearBtn) {
             clearBtn.addEventListener('click', () => {
@@ -78,7 +88,6 @@ class BrowserUI {
             });
         }
 
-        // New tab input
         const newtabInput = document.getElementById('newtab-input');
         if (newtabInput) {
             newtabInput.addEventListener('keypress', (e) => {
@@ -88,23 +97,20 @@ class BrowserUI {
             });
         }
 
-        // Tabs button
         const tabsBtn = document.getElementById('tabs-btn');
         if (tabsBtn) {
             tabsBtn.addEventListener('click', () => {
-                this.showTabs();
+                this.showScreen('tabs');
             });
         }
 
-        // Dock tabs button
         const dockTabsBtn = document.getElementById('dock-tabs-btn');
         if (dockTabsBtn) {
             dockTabsBtn.addEventListener('click', () => {
-                this.showTabs();
+                this.showScreen('tabs');
             });
         }
 
-        // Back button
         const backBtn = document.getElementById('back-btn');
         if (backBtn) {
             backBtn.addEventListener('click', () => {
@@ -112,7 +118,6 @@ class BrowserUI {
             });
         }
 
-        // Forward button
         const forwardBtn = document.getElementById('forward-btn');
         if (forwardBtn) {
             forwardBtn.addEventListener('click', () => {
@@ -120,7 +125,6 @@ class BrowserUI {
             });
         }
 
-        // Reload button
         const reloadBtn = document.getElementById('reload-btn');
         if (reloadBtn) {
             reloadBtn.addEventListener('click', () => {
@@ -128,7 +132,6 @@ class BrowserUI {
             });
         }
 
-        // New tab button (in tabs screen)
         const newTabBtn = document.getElementById('new-tab-btn');
         if (newTabBtn) {
             newTabBtn.addEventListener('click', () => {
@@ -136,7 +139,6 @@ class BrowserUI {
             });
         }
 
-        // Retry button
         const retryBtn = document.getElementById('retry-btn');
         if (retryBtn) {
             retryBtn.addEventListener('click', () => {
@@ -144,7 +146,6 @@ class BrowserUI {
             });
         }
 
-        // Quick access buttons
         document.querySelectorAll('.quick-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const url = btn.dataset.url;
@@ -155,21 +156,20 @@ class BrowserUI {
         });
     }
 
-    // Bridge communication
-    setBridge(bridge) {
-        this.bridge = bridge;
-    }
-
-    callNative(action, data = {}) {
+    callNative(action, data) {
         if (this.bridge && typeof this.bridge[action] === 'function') {
-            this.bridge[action](data);
+            if (data !== undefined && data !== null) {
+                this.bridge[action](data);
+            } else {
+                this.bridge[action]();
+            }
         }
     }
 
-    // Navigation
     navigateTo(url) {
         this.hideError();
-        this.callNative('navigateTo', { url });
+        this.callNative('navigateTo', url);
+        this.showScreen('browser');
     }
 
     goBack() {
@@ -190,14 +190,16 @@ class BrowserUI {
 
     createNewTab() {
         this.callNative('createNewTab');
+        this.showScreen('newtab');
     }
 
     closeTab(tabId) {
-        this.callNative('closeTab', { tabId });
+        this.callNative('closeTab', tabId);
     }
 
     switchTab(tabId) {
-        this.callNative('switchTab', { tabId });
+        this.callNative('switchTab', tabId);
+        this.showScreen('browser');
     }
 
     retry() {
@@ -205,7 +207,6 @@ class BrowserUI {
         this.callNative('retry');
     }
 
-    // UI State
     setLoading(loading) {
         this.isLoading = loading;
         const loadingBar = document.getElementById('loading-bar');

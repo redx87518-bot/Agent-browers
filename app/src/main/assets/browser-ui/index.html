@@ -8,34 +8,8 @@
 </head>
 <body>
     <div id="app">
-        <!-- Browser Screen -->
-        <div id="browser-screen" class="screen active">
-            <div class="browser-chrome">
-                <div class="address-bar-container">
-                    <div class="address-bar">
-                        <svg class="address-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.35-4.35"></path>
-                        </svg>
-                        <input type="text" id="url-input" class="url-input" placeholder="Search or enter URL" autocomplete="off">
-                        <button id="clear-btn" class="clear-btn" style="display: none;">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                            </svg>
-                        </button>
-                    </div>
-                    <button id="tabs-btn" class="tabs-btn">
-                        <span id="tab-count">1</span>
-                    </button>
-                </div>
-                <div id="loading-bar" class="loading-bar" style="width: 0%;"></div>
-            </div>
-            <div class="webview-container" id="webview-container"></div>
-        </div>
-
-        <!-- New Tab Screen -->
-        <div id="newtab-screen" class="screen">
+        <!-- New Tab Screen (default) -->
+        <div id="newtab-screen" class="screen active">
             <div class="newtab-content">
                 <div class="newtab-header">
                     <h1 class="newtab-title">Good afternoon</h1>
@@ -84,6 +58,31 @@
                         <span>Email</span>
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Browser Screen -->
+        <div id="browser-screen" class="screen">
+            <div class="browser-chrome">
+                <div class="address-bar-container">
+                    <div class="address-bar">
+                        <svg class="address-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <input type="text" id="url-input" class="url-input" placeholder="Search or enter URL" autocomplete="off">
+                        <button id="clear-btn" class="clear-btn" style="display: none;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <button id="tabs-btn" class="tabs-btn">
+                        <span id="tab-count">1</span>
+                    </button>
+                </div>
+                <div id="loading-bar" class="loading-bar" style="width: 0%;"></div>
             </div>
         </div>
 
