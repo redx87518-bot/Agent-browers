@@ -63,6 +63,7 @@ dependencies {
     val activityVersion = "1.8.0"
     val composeVersion = "1.5.4"
     val material3Version = "1.1.2"
+    val materialVersion = "1.11.0"
     val navigationVersion = "2.7.5"
     val coilVersion = "2.5.0"
     val geckoVersion = "125.0.20240425211020"
@@ -75,6 +76,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
     implementation("androidx.compose.material3:material3:$material3Version")
     implementation("androidx.navigation:navigation-compose:$navigationVersion")
+    implementation("com.google.android.material:material:$materialVersion")
+    implementation("androidx.compose.material3:material3:$material3Version")
     implementation("org.mozilla.geckoview:geckoview-omni:$geckoVersion")
     implementation("io.coil-kt:coil-compose:$coilVersion")
 
