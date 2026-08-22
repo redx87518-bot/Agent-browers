@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.agentbrowser.presentation.viewmodel.BrowserViewModel
+import dev.agentbrowser.presentation.components.AddressBar
 import dev.agentbrowser.platform.GeckoEngine
 
 @Composable

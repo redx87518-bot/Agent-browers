@@ -6,6 +6,9 @@ import dev.agentbrowser.domain.model.SearchProvider
 import dev.agentbrowser.domain.model.Tab
 import dev.agentbrowser.domain.model.GoogleSearchProvider
 import dev.agentbrowser.domain.repository.BrowserRepository
+import dev.agentbrowser.domain.repository.HistoryRepository
+import dev.agentbrowser.domain.repository.TabManager
+import dev.agentbrowser.platform.GeckoEngine
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

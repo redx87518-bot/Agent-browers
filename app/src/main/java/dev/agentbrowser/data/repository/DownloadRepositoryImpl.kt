@@ -1,6 +1,8 @@
 package dev.agentbrowser.data.repository
 
+import dev.agentbrowser.domain.repository.DownloadItem
 import dev.agentbrowser.domain.repository.DownloadRepository
+import dev.agentbrowser.domain.repository.DownloadStatus
 import dev.agentbrowser.platform.DownloadHandler
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

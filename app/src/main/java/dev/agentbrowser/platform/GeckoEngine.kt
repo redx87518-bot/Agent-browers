@@ -58,7 +58,9 @@ class GeckoEngine(private val context: Context) {
 
     fun setActiveSession(tabId: String?) {
         val session = sessions[tabId]
-        geckoView.setSession(session)
+        if (session != null) {
+            geckoView.setSession(session)
+        }
     }
 
     fun getActiveSession(): GeckoSession? = geckoView.getSession()

@@ -1,6 +1,7 @@
 package dev.agentbrowser.data.repository
 
 import dev.agentbrowser.domain.model.Tab
+import dev.agentbrowser.platform.GeckoEngine
 import dev.agentbrowser.domain.repository.TabManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
