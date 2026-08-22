@@ -13,7 +13,6 @@ import dev.agentbrowser.platform.AndroidDownloadHandler
 import dev.agentbrowser.platform.DownloadHandler
 import dev.agentbrowser.platform.GeckoEngine
 import dev.agentbrowser.platform.PermissionHelper
-import dev.agentbrowser.platform.SecureStorage
 
 class BrowserApplication : Application() {
     lateinit var browserRepository: BrowserRepository
@@ -26,13 +25,10 @@ class BrowserApplication : Application() {
         private set
     lateinit var permissionHelper: PermissionHelper
         private set
-    lateinit var secureStorage: SecureStorage
-        private set
 
     override fun onCreate() {
         super.onCreate()
         permissionHelper = PermissionHelper(this)
-        secureStorage = SecureStorage(this)
         val downloadHandler = AndroidDownloadHandler(this)
         val engine = GeckoEngine(this)
         historyRepository = HistoryRepositoryImpl()

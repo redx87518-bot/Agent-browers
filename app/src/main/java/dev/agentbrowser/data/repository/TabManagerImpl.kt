@@ -22,7 +22,7 @@ class TabManagerImpl(
     private val _activeTabId = MutableStateFlow<String?>(null)
     override val activeTabId: StateFlow<String?> = _activeTabId.asStateFlow()
 
-    override suspend fun createTab(url: String = ""): Tab {
+    override suspend fun createTab(url: String): Tab {
         val tab = Tab(url = url)
         _tabs.update { it + tab }
         engine.createSession(tab.id)

@@ -4,8 +4,8 @@ import dev.agentbrowser.domain.model.BrowserState
 import dev.agentbrowser.domain.model.HistoryEntry
 import dev.agentbrowser.domain.model.SearchProvider
 import dev.agentbrowser.domain.model.Tab
+import dev.agentbrowser.domain.model.GoogleSearchProvider
 import dev.agentbrowser.domain.repository.BrowserRepository
-import dev.agentbrowser.domain.usecase.GoogleSearchProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

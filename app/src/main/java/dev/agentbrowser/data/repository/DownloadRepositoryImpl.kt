@@ -12,7 +12,8 @@ class DownloadRepositoryImpl(
 ) : DownloadRepository {
 
     private val _activeDownloads = MutableStateFlow<List<DownloadItem>>(emptyList())
-    override val activeDownloads: Flow<List<DownloadItem>> = _activeDownloads.asStateFlow()
+
+    override fun getActiveDownloads(): Flow<List<DownloadItem>> = _activeDownloads.asStateFlow()
 
     override suspend fun startDownload(url: String, mimeType: String?, userAgent: String?) {
         val id = downloadHandler.enqueueDownload(url, mimeType, userAgent)
