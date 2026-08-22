@@ -24,10 +24,10 @@ jobs:
           packages: "platform-tools platforms;android-34 build-tools;34.0.0"
 
       - name: Build Debug APK
-        run: |
-          gradle assembleDebug --stacktrace 2>&1 | tee build.log
-          echo "--- APK Directory Contents ---"
-          ls -la app/build/outputs/apk/debug/ || echo "APK directory not found"
+        run: gradle assembleDebug --stacktrace 2>&1 | tee build.log
+
+      - name: Find APK files
+        run: find . -name "*.apk" -type f
 
       - name: Upload build log
         if: always()
