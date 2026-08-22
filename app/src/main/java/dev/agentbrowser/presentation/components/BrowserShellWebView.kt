@@ -78,7 +78,6 @@ class BrowserShellBridge(
 @Composable
 fun BrowserShellWebView(
     bridge: BrowserShellBridge,
-    onWebViewReady: (WebView) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val context = androidx.compose.ui.platform.LocalContext.current
@@ -92,7 +91,6 @@ fun BrowserShellWebView(
         webView.setBackgroundColor(0x00000000)
         webView.addJavascriptInterface(bridge, "BrowserBridge")
         webView.loadUrl("file:///android_asset/browser-ui/index.html")
-        onWebViewReady(webView)
     }
 
     AndroidView(

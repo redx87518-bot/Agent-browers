@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.navigation.compose.rememberNavController
 import dev.agentbrowser.presentation.navigation.NavGraph
 import dev.agentbrowser.presentation.viewmodel.BrowserViewModel
-import dev.agentbrowser.presentation.viewmodel.TabsViewModel
 import dev.agentbrowser.platform.WebViewEngine
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +18,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val application = application as BrowserApplication
         val browserViewModel = BrowserViewModel(application.browserRepository, application.tabManager)
-        val tabsViewModel = TabsViewModel(application.tabManager, application.historyRepository)
 
         setContent {
             MaterialTheme {
@@ -28,7 +26,6 @@ class MainActivity : ComponentActivity() {
                     NavGraph(
                         navController = navController,
                         browserViewModel = browserViewModel,
-                        tabsViewModel = tabsViewModel,
                         engine = application.webViewEngine
                     )
                 }

@@ -8,6 +8,7 @@
 
 -keep class dev.agentbrowser.data.repository.** { *; }
 -keep class dev.agentbrowser.platform.** { *; }
+-keep class dev.agentbrowser.presentation.components.** { *; }
 
 -keepclassmembers class * implements java.io.Serializable {
     static final long serialVersionUID;
